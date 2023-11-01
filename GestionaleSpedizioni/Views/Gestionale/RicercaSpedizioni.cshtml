@@ -1,0 +1,40 @@
+﻿@model GestionaleSpedizioni.Models.Spedizione
+
+@{
+    ViewBag.Title = "RicercaSpedizioni";
+}
+
+@if (ViewBag.RicercaSpedizione != null)
+{
+    <div class=" container alert alert-danger">
+        <p>@ViewBag.RicercaSpedizione</p>
+    </div>
+}
+
+@if (ViewBag.Errore != null)
+{
+    <div class=" container alert alert-danger">
+        <p>@ViewBag.Errore</p>
+    </div>
+}
+
+
+
+@using (Html.BeginForm("RicercaSpedizioni", "Gestionale", FormMethod.Post))
+{
+    <center>
+        <div class="card shadow" style="width: 25rem;">
+            <div class="card-body">
+                <h2 class="text-center justify-content-center d-flex">Scegli spedizione</h2>
+                <div class=" flex-column justify-content-center">
+                    <label class="mt-2 ">Inserisci il tuo codice fiscale o la tua partita iva</label>
+                    <input class="text-input m-1 mx-2" type="text" id="CF" name="CF" placeholder="Inserisci codice fiscale o partita iva">
+                    <label class="mt-2 ">Inserisci il numero di spedizione</label>
+                    <input class="text-input m-1 mx" type="text" id="NumeroSpedizione" name="NumeroSpedizione" placeholder="Inserisci numero spedizione">
+                    <input class=" btn ColoreBtn justify-content-center d-flex m-2" type="submit" value="Cerca">
+                </div>
+
+            </div>
+        </div>
+    </center>
+}

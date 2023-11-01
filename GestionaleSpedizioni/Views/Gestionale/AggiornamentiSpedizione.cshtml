@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GestionaleSpedizioni.Models.Aggiornamento>
+
+@{
+    ViewBag.Title = "AggiornamentiSpedizione";
+}
+
+<h2 class="me-5"><a href="/Gestionale/RicercaSpedizioni" class="btn ColoreBtn2"><i class="fa-solid fa-circle-chevron-left"></i></a> Aggiornamenti spedizione</h2>
+
+<p>
+</p>
+<table class="table">
+    <tr class="RigheTabella text-white">
+        <th>
+            @Html.DisplayNameFor(model => model.Stato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Luogo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataAggiornamento)
+        </th>
+        <th>
+            Identificativo addetto
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="TabPoste">
+            <td>
+                @Html.DisplayFor(modelItem => item.Stato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Luogo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descrizione)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataAggiornamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdLogin)
+            </td>
+        </tr>
+    }
+
+</table>

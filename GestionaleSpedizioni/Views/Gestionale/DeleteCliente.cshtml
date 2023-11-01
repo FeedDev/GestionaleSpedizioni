@@ -1,0 +1,33 @@
+﻿@model GestionaleSpedizioni.Models.Cliente
+
+@{
+    ViewBag.Title = "DeleteCliente";
+}
+
+@if (ViewBag.Errore != null)
+{
+    <div class="alert alert-danger">
+        <p>@ViewBag.Errore</p>
+    </div>
+}
+<center>
+    <div>
+
+        <h4 class="me-5"><a href="/Gestionale/Dashboard" class="btn ColoreBtn2"><i class="fa-solid fa-circle-chevron-left"></i></a> Vuoi eliminare il cliente con id: @Model.Nome @Model.Cognome ?</h4>
+
+
+        @using (Html.BeginForm())
+
+        {
+            @Html.HiddenFor(model => model.Nome)
+            @Html.HiddenFor(model => model.Cognome)
+
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Elimina" class="btn btn-danger" />
+            </div>
+        }
+    </div>
+</center>
+

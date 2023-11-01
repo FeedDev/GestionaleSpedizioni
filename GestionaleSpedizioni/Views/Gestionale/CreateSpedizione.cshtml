@@ -1,0 +1,97 @@
+﻿@model GestionaleSpedizioni.Models.Spedizione
+
+@{
+    ViewBag.Title = "CreateSpedizione";
+}
+
+@if (ViewBag.Errore != null)
+{
+    <div class="alert alert-danger">
+        <p>@ViewBag.Errore</p>
+    </div>
+}
+<center>
+    <div class="card shadow" style="width: 25rem;">
+        <div class="card-body">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h2><a href="/Gestionale/DetailsCliente/@Request.QueryString["IdCliente"]" class="btn ColoreBtn2"><i class="fa-solid fa-circle-chevron-left"></i></a> Aggiungi spedizione</h2>
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataSpedizione, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DataSpedizione, new { htmlAttributes = new { @class = "text-input", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.DataSpedizione, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Peso, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Peso, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci peso" } })
+                            @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Citta, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Citta, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci città destinataria" } })
+                            @Html.ValidationMessageFor(model => model.Citta, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IndirizzoDestinatario, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.IndirizzoDestinatario, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci indirizzo destinatario" } })
+                            @Html.ValidationMessageFor(model => model.IndirizzoDestinatario, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NomeDestinatario, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.NomeDestinatario, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci nominativo destinatario" } })
+                            @Html.ValidationMessageFor(model => model.NomeDestinatario, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CostoSpedizione, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CostoSpedizione, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci il costo spedizione" } })
+                            @Html.ValidationMessageFor(model => model.CostoSpedizione, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataConsegna, htmlAttributes: new { @class = "control-label col-md-6" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DataConsegna, new { htmlAttributes = new { @class = "text-input", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.DataConsegna, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Aggiungi" class="btn ColoreBtn my-3" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</center>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

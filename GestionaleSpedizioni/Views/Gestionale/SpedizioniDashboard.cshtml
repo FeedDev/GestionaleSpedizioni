@@ -1,0 +1,189 @@
+﻿@model IEnumerable<GestionaleSpedizioni.Models.Spedizione>
+
+@{
+    ViewBag.Title = "SpedizioniDashboard";
+    int n = 0;
+    bool isConsegnato = false;
+}
+
+<h3>Tutte le Spedizioni</h3>
+
+@if (Convert.ToBoolean(Request.QueryString["Odierne"]) == true)
+{
+    <a href="/Gestionale/SpedizioniDashboard?Odierne=false" class="btn ColoreBtn">Mostra tutte</a>
+}
+else
+{
+    <a href="/Gestionale/SpedizioniDashboard?Odierne=true" class="btn ColoreBtn">Mostra odierne</a>
+}
+
+@foreach (GestionaleSpedizioni.Models.Spedizione spedizioni in Model)
+{
+    isConsegnato = false;
+    foreach (GestionaleSpedizioni.Models.Aggiornamento aggiornamenti in ViewBag.ListaAggiornamenti)
+    {
+        if (aggiornamenti.IdSpedizione == spedizioni.IdSpedizione)
+        {
+            if (aggiornamenti.Stato == "Consegnato")
+            {
+                isConsegnato = true;
+                break;
+            }
+        }
+
+    }
+    if (!isConsegnato)
+    {
+        n++;
+    }
+
+}
+
+@if (Convert.ToBoolean(Request.QueryString["Citta"]) == true)
+{
+    <a href="/Gestionale/SpedizioniDashboard?Citta=false" class="btn ColoreBtn">Nascondi spedizioni per città</a>
+}
+else
+{
+    <a href="/Gestionale/SpedizioniDashboard?Citta=true" class="btn ColoreBtn">Mostra spedizioni per città</a>
+}
+
+@if (Convert.ToBoolean(Request.QueryString["Citta"]) == true)
+{
+    <table class="table mt-3">
+        <tr class="RigheTabella text-white">
+            <th>
+                @Html.DisplayNameFor(model => model.Citta)
+            </th>
+            <th>
+                Numero totale spedizioni
+            </th>
+
+        </tr>
+            @foreach (GestionaleSpedizioni.Models.Spedizione spedizioni in ViewBag.ListaCitta)
+            {
+                <tr class="TabPoste">
+                    <td>
+                        @Html.DisplayFor(modelItem => spedizioni.Citta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => spedizioni.IdSpedizione)
+                    </td>
+
+                </tr>
+
+                }
+            </table>
+ }
+
+
+            <p>Spedizioni in attesa di consegna: @n </p>
+
+            <table class="table">
+                <tr class="RigheTabella text-white">
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdSpedizione)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DataSpedizione)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Citta)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Peso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IndirizzoDestinatario)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NomeDestinatario)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CostoSpedizione)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DataConsegna)
+                    </th>
+                </tr>
+
+                @if (Convert.ToBoolean(Request.QueryString["Odierne"]) == true)
+                {
+                    foreach (GestionaleSpedizioni.Models.Spedizione spedizioni in Model)
+                    {
+                        if (spedizioni.DataConsegna == DateTime.Now.Date)
+                        {
+                            foreach (GestionaleSpedizioni.Models.Aggiornamento aggiornamenti in ViewBag.ListaAggiornamenti)
+                            {
+                                if (aggiornamenti.IdSpedizione == spedizioni.IdSpedizione)
+                                {
+                                    if (aggiornamenti.Stato == "In consegna")
+                                    {
+                                        <tr class="TabPoste">
+                                            <td>
+                                                @Html.DisplayFor(modelItem => spedizioni.IdSpedizione)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => spedizioni.DataSpedizione)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => spedizioni.Citta)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => spedizioni.Peso)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => spedizioni.IndirizzoDestinatario)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => spedizioni.NomeDestinatario)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => spedizioni.CostoSpedizione)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => spedizioni.DataConsegna)
+                                            </td>
+                                        </tr>
+                                        break;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr class="TabPoste">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdSpedizione)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataSpedizione)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Citta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Peso)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IndirizzoDestinatario)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeDestinatario)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CostoSpedizione)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataConsegna)
+                            </td>
+                        </tr>
+
+                    }
+                }
+            </table>

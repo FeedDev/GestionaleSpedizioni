@@ -1,0 +1,86 @@
+﻿@model IEnumerable<GestionaleSpedizioni.Models.Cliente>
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2><i class="fa-solid fa-users"></i> Dashboard</h2>
+@if (TempData["Successo"] != null)
+{
+    <div class="alert alert-success">
+        <p>@TempData["Successo"]</p>
+    </div>
+}
+@*@if (TempData["Errore"] != null)
+{
+    <div class="alert alert-danger">
+        <p>@TempData["Errore"]</p>
+    </div>
+}*@
+
+<p>
+    <a href="/Gestionale/CreateCliente" class="btn ColoreBtn"><i class="fa-solid fa-user-plus"></i> Aggiungi nuovo cliente</a>
+</p>
+<table class="table">
+    <tr class="RigheTabella text-white">
+        <th>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Indirizzo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodiceFiscale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartitaIva)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Privato)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="TabPoste">
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cognome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Indirizzo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodiceFiscale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartitaIva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Privato)
+            </td>
+            <td>
+                <a href="/Gestionale/EditCliente/@item.IdCliente" class="btn btn-light"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="/Gestionale/DetailsCliente/@item.IdCliente" class="btn btn-light"><i class="fa-solid fa-circle-info"></i></a>
+                <a href="/Gestionale/DeleteCliente/@item.IdCliente" class="btn btn-light"><i class="fa-solid fa-user-xmark"></i></a>
+
+                @*@Html.ActionLink("Edit", "EditCliente", new { id = item.IdCliente }) |
+                    @Html.ActionLink("Details", "DetailsCliente", new { id = item.IdCliente }) |
+                    @Html.ActionLink("Delete", "DeleteCliente", new { id = item.IdCliente })*@
+            </td>
+        </tr>
+    }
+
+</table>

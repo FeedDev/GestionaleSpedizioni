@@ -1,0 +1,101 @@
+﻿@model GestionaleSpedizioni.Models.Cliente
+
+@{
+    ViewBag.Title = "CreateCliente";
+}
+
+@if (ViewBag.Errore != null)
+{
+    <div class="alert alert-danger">
+        <p>@ViewBag.Errore</p>
+    </div>
+}
+
+
+<center>
+    <div class="card shadow" style="width: 25rem;">
+        <div class="card-body">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+
+                <h2 class="me-5"><a href="/Gestionale/Dashboard" class="btn ColoreBtn2"><i class="fa-solid fa-circle-chevron-left"></i></a> Aggiungi cliente</h2>
+
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    @{
+                        if (Convert.ToBoolean(Request.QueryString["Privato"]) == true)
+                        {
+                            <a href="/Gestionale/CreateCliente?Privato=false" class="btn ColoreBtn2 mb-3">Passa a azienda</a>
+                        }
+                        else
+                        {
+                            <a href="/Gestionale/CreateCliente?Privato=true" class="btn ColoreBtn2 mb-3">Passa a privato</a>
+                        }
+                    }
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci nome cliente" } })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cognome, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Cognome, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci cognome cliente" } })
+                            @Html.ValidationMessageFor(model => model.Cognome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Indirizzo, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Indirizzo, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci indirizzo cliente" } })
+                            @Html.ValidationMessageFor(model => model.Indirizzo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @{
+                        if (Convert.ToBoolean(Request.QueryString["Privato"]) == true)
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CodiceFiscale, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.CodiceFiscale, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci codice fiscale cliente" } })
+                                    @Html.ValidationMessageFor(model => model.CodiceFiscale, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PartitaIva, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.PartitaIva, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci partita iva cliente" } })
+                                    @Html.ValidationMessageFor(model => model.PartitaIva, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Crea" class="btn ColoreBtn my-3" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</center>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

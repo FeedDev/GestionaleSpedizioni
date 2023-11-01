@@ -1,0 +1,168 @@
+﻿@model GestionaleSpedizioni.Models.Cliente
+
+@{
+    ViewBag.Title = "DetailsCliente";
+}
+
+@if (TempData["Successo"] != null)
+{
+    <div class="alert alert-danger">
+        <p>@TempData["Successo"]</p>
+    </div>
+}
+
+<h2><a href="/Gestionale/Dashboard" class="btn ColoreBtn2"><i class="fa-solid fa-circle-chevron-left"></i></a> Dettagli cliente</h2>
+
+<div>
+    <hr />
+    <a href="/Gestionale/EditCliente/@Model.IdCliente" class="btn ColoreBtn2"><i class="fa-solid fa-pen-to-square"></i></a>
+    <a href="/Gestionale/DeleteCliente/@Model.IdCliente" class="btn ColoreBtn2"><i class="fa-solid fa-user-xmark"></i></a>
+    <table class="table my-5">
+        <tr class="RigheTabella text-white">
+            <th>
+                @Html.DisplayNameFor(model => model.IdCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cognome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Indirizzo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodiceFiscale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartitaIva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Privato)
+            </th>
+        </tr>
+
+        <tr class="TabPoste">
+
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.IdCliente)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.Nome)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.Cognome)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.Indirizzo)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.CodiceFiscale)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.PartitaIva)
+            </td>
+
+
+
+            <td>
+                @Html.DisplayFor(model => model.Privato)
+            </td>
+
+        </tr>
+
+    </table>
+</div>
+
+
+<h3>Spedizioni di @Model.Nome @Model.Cognome</h3>
+
+<p>
+    <a href="/Gestionale/CreateSpedizione?IdCliente=@Model.IdCliente" class="btn ColoreBtn"><i class="fa-solid fa-truck-fast"></i> Inserisci nuova spedizione</a>
+</p>
+@{
+    <table class="table">
+        <tr class="RigheTabella text-white">
+            <th>
+                Id Spedizione
+            </th>
+            <th>
+                Data Spedizione
+            </th>
+            <th>
+                Peso
+            </th>
+            <th>
+                Città Destinataria
+            </th>
+            <th>
+                Indirizzo Destinatario
+            </th>
+            <th>
+                Nome Destinatario
+            </th>
+            <th>
+                Costo spedizione
+            </th>
+            <th>
+                Data Consegna prevista
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (GestionaleSpedizioni.Models.Spedizione item in ViewBag.ListaSpedizioni)
+        {
+            <tr class="TabPoste">
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdSpedizione)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataSpedizione)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Peso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Citta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IndirizzoDestinatario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeDestinatario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostoSpedizione) &euro;
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataConsegna)
+                </td>
+                <td>
+                    <a href="/Gestionale/MostraAggiornamenti?IdCliente=@Model.IdCliente&IdSpedizione=@item.IdSpedizione" class="btn btn-light"><i class="fa-solid fa-circle-info"></i></a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+<p>
+
+
+</p>

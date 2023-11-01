@@ -1,0 +1,75 @@
+﻿@model GestionaleSpedizioni.Models.Aggiornamento
+
+@{
+    ViewBag.Title = "CreateAggiornamento";
+}
+
+
+
+<center>
+    <div class="card shadow" style="width: 25rem;">
+        <div class="card-body">
+
+            @if (ViewBag.Errore != null)
+            {
+                <div class="alert alert-danger">
+                    <p>@ViewBag.Errore</p>
+                </div>
+            }
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <h4><a href="/Gestionale/MostraAggiornamenti?IdCliente=@Request.QueryString["IdCliente"]&IdSpedizione=@Request.QueryString["IdSpedizione"]" class="btn ColoreBtn2"><i class="fa-solid fa-circle-chevron-left"></i></a> Aggiungi aggiornamento</h4>
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Stato, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Stato, new SelectList(ViewBag.Stato, "Value", "Text"), new { @class = "text-input" })
+                            @Html.ValidationMessageFor(model => model.Stato, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Luogo, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Luogo, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci attuale luogo spedizione" } })
+                            @Html.ValidationMessageFor(model => model.Luogo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Descrizione, new { htmlAttributes = new { @class = "text-input", @placeholder = "Inserisci una descrizione" } })
+                            @Html.ValidationMessageFor(model => model.Descrizione, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    @*<div class="form-group">
+                    @Html.LabelFor(model => model.DataAggiornamento, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DataAggiornamento, new { htmlAttributes = new { @class = "text-input", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.DataAggiornamento, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Aggiungi" class="btn ColoreBtn my-3" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        </div>
+    </center>
+
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }

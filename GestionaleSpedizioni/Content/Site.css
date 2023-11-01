@@ -1,0 +1,104 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+* {
+    font-family: 'Teko', sans-serif;
+}
+
+.ColorNav {
+    background-color: #eedc00;
+    padding: 20px 0;
+}
+
+.titolo {
+    color: #0047bb;
+
+}
+
+
+.navbar {
+    padding: 0;
+    margin: 0;
+}
+
+.NavLink {
+    margin: 0;
+    margin-left: 10px;
+    height: 100%;
+    border-bottom: 4px solid transparent;
+}
+
+    .NavLink:hover {
+        border-bottom: 4px solid #0047bb;
+    }
+
+.ColoreBtn {
+    border-radius: 30px;
+    padding: 5px 70px;
+    color: black;
+    background-color: #eedc00;
+}
+
+    .ColoreBtn:hover {
+        background-color: #ffec00;
+    }
+
+.ColoreBtn2 {
+    border-radius: 30px;
+    padding: 5px 20px;
+    color: black;
+    background-color: #eedc00;
+}
+
+    .ColoreBtn2:hover {
+        background-color: #ffec00;
+    }
+
+    /*Login*/
+.text-input {
+    border: none;
+    border-bottom: 1px solid #d0d0d0;
+    width: 300px;
+    height: 50px;
+    font-style: italic;
+    border-radius: 0;
+}
+
+    .text-input:focus {
+        outline: none;
+        border-bottom: 1px solid #0047bb;
+        animation: 1s infinite alternate slidein;
+    }
+
+.RigheTabella {
+    background-color: #0047bb;
+    color: white;
+}
+
+.TabPoste {
+
+    background-color: #eedc00;
+}
+
+    .TabPoste:nth-child(2n+1) {
+        background-color: #ffec00;
+    }
+
